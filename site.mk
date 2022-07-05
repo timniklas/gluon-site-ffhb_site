@@ -17,9 +17,6 @@ GLUON_FEATURES := \
 	web-advanced \
 	web-wizard
 
-GLUON_FEATURES_standard := \
-  wireless-encryption-wpa3
-
 ##	GLUON_SITE_PACKAGES
 #		Specify additional Gluon/OpenWrt packages to include here;
 #		A minus sign may be prepended to remove a packages from the
@@ -36,6 +33,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-web-private-wifi \
 	gluon-radv-filterd \
 	gluon-setup-mode \
+	gluon-speedtest \
 	iwinfo \
 	firewall \
 	haveged
@@ -71,3 +69,9 @@ GLUON_REGION ?= eu
 GLUON_LANGS ?= en de
 
 GLUON_MULTIDOMAIN=1
+
+# ramips-mt7621
+ifeq ($(GLUON_TARGET),ramips-mt7621)
+	GLUON_ubnt-erx_SITE_PACKAGES +=  $(EXCLUDE_NO_WIFI)
+	GLUON_ubnt-erx-sfp_SITE_PACKAGES +=  $(EXCLUDE_NO_WIFI)
+endif
